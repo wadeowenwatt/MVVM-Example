@@ -1,16 +1,15 @@
 package com.example.mvvmexample.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mvvmexample.LoginUser
 
 // ViewModel
 class LoginViewModel : ViewModel() {
-    private val _emailAddress = MutableLiveData<String>("")
-    val emailAddress: LiveData<String> = _emailAddress
-    private val _password = MutableLiveData<String>("")
-    val password: LiveData<String> = _password
+    private val _emailAddress = MutableLiveData<String>()
+
+    private val _password = MutableLiveData<String>()
+
     private val _userMutableLiveData = MutableLiveData<LoginUser>()
     val userMutableLiveData : MutableLiveData<LoginUser> = _userMutableLiveData
 
@@ -30,8 +29,9 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun reset() {
-        _emailAddress.value = ""
-        _password.value = ""
+        _emailAddress.value = "---"
+        _password.value = "---"
+        _userMutableLiveData.value = LoginUser(_emailAddress.value!!, _password.value!!)
     }
 
     private fun checkLogin(user: LoginUser) : Boolean {

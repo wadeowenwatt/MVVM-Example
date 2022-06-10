@@ -12,32 +12,38 @@ import com.example.mvvmexample.viewmodel.LoginViewModel
 // View
 class LoginFragment : Fragment() {
 
-    private var binding: FragmentLoginBinding? = null
+    private var _binding : FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
     private val loginViewModel: LoginViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val fragmentBinding = FragmentLoginBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
-        return fragmentBinding.root
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.loginFragment = this
 
-        binding?.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = loginViewModel
-            loginFragment = this@LoginFragment
+        loginViewModel.userMutableLiveData.observe(viewLifecycleOwner) {
+            binding.lblEmailAnswer.text = it.strEmailAddress
+            binding.lblPasswordAnswer.text = it.strPassword
         }
+
+        binding.btnLogin.setOnClickListener{ onClickLoginButton() }
     }
 
-    fun onClickLoginButton() {
-        loginViewModel.onClick(binding!!.txtEmailAddress.text.toString(),
-            binding!!.txtPassword.text.toString())
+    private fun onClickLoginButton() {
+        loginViewModel.onClick(binding.txtEmailAddress.text.toString(),
+            binding.txtPassword.text.toString())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

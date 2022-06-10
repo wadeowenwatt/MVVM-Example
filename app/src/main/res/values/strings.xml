@@ -2,4 +2,9 @@
     <string name="app_name">MVVM Example</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="MainTitle">Login Example Using MVVM, DataBinding with LiveData</string>
+    <string name="hintEmail">E-Mail Address</string>
+    <string name="hintPass">Password</string>
+    <string name="LoginButton">Click to Login</string>
+    <string name="SubTitle">See the Results Below From LiveDataBinding</string>
 </resources>
