@@ -1,4 +1,4 @@
-package com.example.weatherapp
+package com.example.mvvmexample
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.weatherapp.databinding.FragmentLoginBinding
-import com.example.weatherapp.viewmodel.LoginViewModel
+import com.example.mvvmexample.databinding.FragmentLoginBinding
+import com.example.mvvmexample.viewmodel.LoginViewModel
 
 // View
 class LoginFragment : Fragment() {

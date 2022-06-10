@@ -7,10 +7,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.weatherapp.viewmodel.LoginViewModel" />
+            type="com.example.mvvmexample.viewmodel.LoginViewModel" />
         <variable
             name="loginFragment"
-            type="com.example.weatherapp.LoginFragment" />
+            type="com.example.mvvmexample.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
