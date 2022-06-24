@@ -22,22 +22,24 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
+        val fragmentBinding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = fragmentBinding
+        return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.loginFragment = this
 
-        loginViewModel.userMutableLiveData.observe(viewLifecycleOwner) {
-            binding.lblEmailAnswer.text = it.strEmailAddress
-            binding.lblPasswordAnswer.text = it.strPassword
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = loginViewModel
+            loginFragment = this@LoginFragment
         }
 
-        binding.btnLogin.setOnClickListener{ onClickLoginButton() }
     }
 
-    private fun onClickLoginButton() {
+    fun onClickLoginButton()  {
         loginViewModel.onClick(binding.txtEmailAddress.text.toString(),
             binding.txtPassword.text.toString())
     }
